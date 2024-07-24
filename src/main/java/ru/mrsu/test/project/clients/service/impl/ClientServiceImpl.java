@@ -2,6 +2,7 @@ package ru.mrsu.test.project.clients.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.mrsu.test.project.clients.data.Client;
+import ru.mrsu.test.project.clients.jpa.ClientRepository;
 import ru.mrsu.test.project.clients.service.ClientService;
 
 import javax.xml.stream.XMLInputFactory;
@@ -15,7 +16,10 @@ import java.util.List;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-
+    private final ClientRepository clientRepository;
+    public ClientServiceImpl(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
     @Override
     public List<Client> getClient() {
         List<Client> listClient = new ArrayList<>();
@@ -47,5 +51,10 @@ public class ClientServiceImpl implements ClientService {
         }
 
         return listClient;
+    }
+
+    @Override
+    public void setClient() {
+        clientRepository.saveAll(getClient());
     }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ClientService {
     public List<Client> getClient();
+    public void setClient();
 }

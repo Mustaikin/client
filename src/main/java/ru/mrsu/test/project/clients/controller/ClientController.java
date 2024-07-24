@@ -1,6 +1,7 @@
 package ru.mrsu.test.project.clients.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mrsu.test.project.clients.data.Client;
 import ru.mrsu.test.project.clients.service.ClientService;
@@ -17,5 +18,9 @@ public class ClientController {
     @GetMapping("internal/client")
     public List<Client> getClients() {
         return clientService.getClient();
+    }
+    @PostMapping("/internal/setClients")
+    public void setClients() {
+        clientService.setClient();
     }
 }
