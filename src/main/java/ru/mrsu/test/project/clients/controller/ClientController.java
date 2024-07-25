@@ -19,8 +19,8 @@ public class ClientController {
     public List<Client> getClients() {
         return clientService.getClient();
     }
-    @PostMapping("/internal/setClients")
-    public void setClients() {
+    @PostMapping("/internal/client/setDataBase")
+    public void setClientDataBase() {
         clientService.setClient();
     }
 }

@@ -2,6 +2,7 @@ package ru.mrsu.test.project.clients.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.mrsu.test.project.clients.data.Address;
+import ru.mrsu.test.project.clients.jpa.AddressRepository;
 import ru.mrsu.test.project.clients.service.AddressService;
 
 import javax.xml.stream.XMLInputFactory;
@@ -14,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class AddressesServiceImpl implements AddressService {
+    private final AddressRepository addressRepository;
+
+    public AddressesServiceImpl(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
     @Override
     public List<Address> getAddresses() {
         List<Address> ListAddress = new ArrayList<>();
@@ -48,6 +54,11 @@ public class AddressesServiceImpl implements AddressService {
             System.out.println("Error Parsing");
         }
         return ListAddress;
+    }
+
+    @Override
+    public void setAddresses() {
+        addressRepository.saveAll(getAddresses());
     }
 
 }
